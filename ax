@@ -1,0 +1,909 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leo TV - تجربة مشاهدة فاخرة</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0c08 100%);
+            min-height: 100vh;
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(212, 175, 55, 0.02) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .luxury-font {
+            font-family: 'Cinzel', serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 30%, #B8860B 70%, #8B6914 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .luxury-card {
+            background: linear-gradient(145deg, rgba(26, 26, 26, 0.9), rgba(15, 12, 8, 0.9));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 24px;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.5),
+                0 1px 0 rgba(212, 175, 55, 0.2) inset,
+                0 -1px 0 rgba(0, 0, 0, 0.5) inset;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .luxury-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent);
+        }
+
+        .luxury-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.7),
+                0 0 0 1px rgba(212, 175, 55, 0.3),
+                0 1px 0 rgba(212, 175, 55, 0.2) inset,
+                0 -1px 0 rgba(0, 0, 0, 0.5) inset;
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+        
+        .gold-glow {
+            box-shadow: 
+                0 0 20px rgba(212, 175, 55, 0.4),
+                0 0 40px rgba(212, 175, 55, 0.2),
+                0 0 60px rgba(212, 175, 55, 0.1);
+        }
+        
+        .gold-text {
+            background: linear-gradient(135deg, #D4AF37, #FFD700, #B8860B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gold-border {
+            border: 1px solid rgba(212, 175, 55, 0.4);
+        }
+        
+        .luxury-btn {
+            background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+            padding: 16px 28px;
+            border-radius: 14px;
+            color: #1a1a1a;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+            border: none;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.5px;
+        }
+        
+        .luxury-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.7s;
+        }
+        
+        .luxury-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(212, 175, 55, 0.5);
+            background: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%);
+        }
+        
+        .luxury-btn:hover::before {
+            left: 100%;
+        }
+        
+        .telegram-btn {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            padding: 16px 28px;
+            border-radius: 14px;
+            color: #D4AF37;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.5px;
+        }
+        
+        .telegram-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(212, 175, 55, 0.3);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(184, 134, 11, 0.1));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .feature-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .code-display {
+            background: linear-gradient(145deg, rgba(26, 26, 26, 0.9), rgba(15, 12, 8, 0.9));
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 16px;
+            padding: 20px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .code-display:hover {
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 16, 10, 0.9));
+            border-color: rgba(212, 175, 55, 0.6);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
+        }
+        
+        .code-display.copied {
+            background: rgba(15, 60, 15, 0.3);
+            border-color: rgba(0, 255, 0, 0.4);
+        }
+        
+        .code-display::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .floating {
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        .copy-notification {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(145deg, rgba(26, 26, 26, 0.95), rgba(15, 12, 8, 0.95));
+            color: #D4AF37;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.4s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            font-family: 'Cinzel', serif;
+        }
+        
+        .copy-notification.show {
+            opacity: 1;
+        }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+            margin: 40px 0;
+        }
+        
+        .ornament {
+            position: relative;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .ornament::before, .ornament::after {
+            content: '❖';
+            color: #D4AF37;
+            font-size: 24px;
+            margin: 0 15px;
+        }
+
+        /* FAQ Styles */
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 16px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: linear-gradient(145deg, rgba(26, 26, 26, 0.9), rgba(15, 12, 8, 0.9));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.1);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-question {
+            color: #D4AF37;
+        }
+
+        .faq-toggle {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        /* New Feature Section Styles */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-block {
+            background: linear-gradient(145deg, rgba(26, 26, 26, 0.9), rgba(15, 12, 8, 0.9));
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #D4AF37, #FFD700, #B8860B);
+        }
+
+        .feature-block:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #D4AF37, #FFD700, #B8860B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+            font-family: 'Cinzel', serif;
+        }
+
+        .feature-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* Hero Icon */
+        .hero-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, rgba(26, 26, 26, 0.9), rgba(15, 12, 8, 0.9));
+            border-radius: 50%;
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s ease;
+        }
+
+        .hero-icon:hover {
+            transform: scale(1.05);
+            border-color: rgba(212, 175, 55, 0.6);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+        }
+
+        .hero-icon svg {
+            width: 60px;
+            height: 60px;
+            color: #D4AF37;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 12px;
+            }
+            
+            .luxury-card {
+                border-radius: 20px;
+                padding: 20px 16px;
+            }
+            
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 16px;
+            }
+            
+            .code-display {
+                font-size: 1.3rem;
+                padding: 16px;
+            }
+            
+            .luxury-btn, .telegram-btn {
+                padding: 14px 20px;
+                font-size: 0.95rem;
+                max-width: 260px;
+            }
+            
+            .copy-notification {
+                width: 90%;
+                text-align: center;
+            }
+            
+            .hero-icon {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .hero-icon svg {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .feature-block {
+                padding: 20px;
+            }
+            
+            .feature-number {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Premium scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #D4AF37, #B8860B);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #FFD700, #D4AF37);
+        }
+    </style>
+</head>
+<body>
+    <div class="particles grid-pattern"></div>
+    <div id="copyNotification" class="copy-notification">تم نسخ الكود إلى الحافظة</div>
+    
+    <div class="container relative z-10 mx-auto px-4 py-8 md:py-16">
+        <!-- Header -->
+        <header class="luxury-card p-8 md:p-12 mb-12 md:mb-20 text-center mx-auto max-w-4xl">
+            <div class="floating mb-6 md:mb-10">
+                <div class="hero-icon">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                </div>
+            </div>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold luxury-font gold-text mb-4 md:mb-6">Leo TV</h1>
+            <p class="text-lg md:text-2xl text-white opacity-90">مشاهدة تبدأ ولا تنتهي</p>
+            <div class="ornament mt-6"></div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="luxury-card p-6 md:p-10 lg:p-14 mb-12 md:mb-16">
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold luxury-font text-white mb-6 md:mb-8">مرحباً بك في <span class="gold-text">Leo TV</span></h2>
+                <p class="text-white text-lg md:text-xl opacity-90 max-w-3xl mx-auto leading-relaxed">
+استمتع بأرقى تجربة بث مباشر بجودة استثنائية لجميع الأحداث الرياضية العالمية.
+                </p>
+            </div>
+            
+            <!-- Download Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 md:mb-16">
+                <div class="luxury-card p-8 text-center hover:gold-glow transition-all duration-500">
+                    <div class="feature-icon mx-auto">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-bold luxury-font text-white mb-4 md:mb-6">Leo TV</h3>
+                    <p class="text-white opacity-90 mb-6 md:mb-8 text-base md:text-lg">تطبيق حصري متوافق مع جميع الأجهزة - بدقة عالية</p>
+                    <a href="https://www.mediafire.com/file/7mh3gdv55ex98nu/Leo+TV.V2.apk/file" 
+                       class="luxury-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        تحميل التطبيق
+                    </a>
+                </div>
+                
+                <div class="luxury-card p-8 text-center hover:gold-glow transition-all duration-500">
+                    <div class="feature-icon mx-auto">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
+                            <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
+                            <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-bold luxury-font text-white mb-4 md:mb-6">مـوقـعـنـا</h3>
+                    <p class="text-white opacity-90 mb-6 md:mb-8 text-base md:text-lg">تابع من خلاله البث وبدون تقطيع للايفون</p>
+                    <a href="https://leo-korra.github.io/tv/" 
+                       class="luxury-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                       رابط الموقع
+                    </a>
+                </div>
+            </div>
+            
+            <div class="section-divider"></div>
+            
+            <!-- Features Section - Completely Redesigned -->
+            <section class="mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold luxury-font text-white text-center mb-10 md:mb-14">مزايا <span class="gold-text">الحصرية</span></h2>
+                
+                <div class="feature-grid">
+                    <div class="feature-block">
+                        <div class="feature-number">01</div>
+                        <h3 class="feature-title">بث مباشر فائق الجودة</h3>
+                        <p class="feature-description">
+                            استمتع ببث مباشر بجودة 4K فائقة الوضوح مع صوت Dolby الرقمي. نظام متطور يضمن تجربة مشاهدة استثنائية.
+                        </p>
+                    </div>
+                    
+                    <div class="feature-block">
+                        <div class="feature-number">02</div>
+                        <h3 class="feature-title">تغطية شاملة للأحداث</h3>
+                        <p class="feature-description">
+                            تغطية حصرية لجميع البطولات والمباريات العالمية. لا تفوت أي حدث رياضي مهما كان.
+                        </p>
+                    </div>
+                    
+                    <div class="feature-block">
+                        <div class="feature-number">03</div>
+                        <h3 class="feature-title">استقرار غير مسبوق</h3>
+                        <p class="feature-description">
+                            نظام خوادم متطور يضمن استقراراً تاماً أثناء البث حتى مع آلاف المشاهدين المتصلين في نفس الوقت.
+                        </p>
+                    </div>
+                    
+                    <div class="feature-block">
+                        <div class="feature-number">04</div>
+                        <h3 class="feature-title">واجهة مستخدم فاخرة</h3>
+                        <p class="feature-description">
+                            تصميم أنيق وسهل الاستخدام يمنحك تجربة تصفح فريدة. كل شيء في متناول يدك.
+                        </p>
+                    </div>
+                    
+                    <div class="feature-block">
+                        <div class="feature-number">05</div>
+                        <h3 class="feature-title">دعم فني متميز</h3>
+                        <p class="feature-description">
+                            فريق دعم فني محترف متاح على مدار الساعة لمساعدتك في أي استفسار أو مشكلة تواجهك.
+                        </p>
+                    </div>
+                    
+                    <div class="feature-block">
+                        <div class="feature-number">06</div>
+                        <h3 class="feature-title">تحديثات مستمرة</h3>
+                        <p class="feature-description">
+                            تحديثات دورية تضيف ميزات جديدة وتحسن الأداء باستمرار لتقديم أفضل تجربة ممكنة.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="section-divider"></div>
+            
+            <!-- Code Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 md:mb-16">
+                <div class="luxury-card p-8 text-center">
+                    <h3 class="text-2xl md:text-3xl font-bold luxury-font text-white mb-6 md:mb-8">كود تحميل التطبيق</h3>
+                    <div class="code-display" data-code="3374650">
+                        <span class="gold-text">1155395</span>
+                    </div>
+                    <p class="text-white opacity-90 text-base md:text-lg">استخدم هذا الكود في تطبيق Downloader لتحميل Leo TV</p>
+                </div>
+            </div>
+            
+            <div class="section-divider"></div>
+            
+            <!-- FAQ Section -->
+            <section class="mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold luxury-font text-white text-center mb-10 md:mb-14">الأسئلة <span class="gold-text">الشائعة</span></h2>
+                
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>كيف يمكنني تحميل التطبيق؟</span>
+                            <svg class="faq-toggle" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>يمكنك تحميل التطبيق باستخدام كود التحميل 1155395 في تطبيق Downloader، أو من خلال الرابط المباشر المتوفر في قسم التحميل.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>هل التطبيق مجاني أم مدفوع؟</span>
+                            <svg class="faq-toggle" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>التطبيق مجاني تماماً ولا يتطلب أي رسوم للاستخدام. نحن نؤمن بتقديم خدمة متميزة للجميع دون أي تكاليف.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>ما هي الأجهزة المتوافقة مع التطبيق؟</span>
+                            <svg class="faq-toggle" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>التطبيق متوافق مع جميع الأجهزة الذكية التي تعمل بنظام أندرويد، بما في ذلك الهواتف والأجهزة اللوحية وأجهزة التلفزيون الذكية.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>كيف يمكنني الحصول على الدعم الفني؟</span>
+                            <svg class="faq-toggle" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>يتوفر فريق الدعم الفني على قناة Telegram الرسمية على الرابط المتوفر في هذه الصفحة. يمكنك التواصل معنا في أي وقت وسنكون سعداء بمساعدتك.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>هل التطبيق آمن للاستخدام؟</span>
+                            <svg class="faq-toggle" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>نعم، التطبيق آمن تماماً للاستخدام ولا يجمع أي بيانات شخصية. نحن نحرص على خصوصية وأمان مستخدمينا.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>مالذي يميز تطبيقكم عن باقي التطبيقات ؟</span>
+                            <svg class="faq-toggle" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>يميّزنا الثقة والجودة والتصميم . المستخدم يبحث عن الثقة واستقرار في مشاهدة المباريات ، بعض التطبيقات لاتوفر هذه الشيء لذلك نحن نوفر كل المستلزمات.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="section-divider"></div>
+            
+            <!-- News & Support Section -->
+            <section class="luxury-card p-8 md:p-10 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold luxury-font text-white mb-6 md:mb-8">أخبار التطبيق والدعم</h2>
+                <p class="text-white text-lg md:text-xl opacity-90 mb-8 md:mb-10 max-w-2xl mx-auto">
+                    انضم إلى قناتنا على Telegram للحصول على آخر الأخبار والتحديثات والدعم الفني. 
+                    نقدم تحديثات مستمرة حول المباريات القادمة وإصلاحات الأخطاء والميزات الجديدة.
+                </p>
+                <a href="https://t.me/Leokorraa" class="telegram-btn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="#D4AF37">
+                        <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.14.141-.259.259-.374.261l.213-3.053 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.136-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+                    </svg>
+                    انضم إلى قناتنا على Telegram
+                </a>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="relative z-10 text-center py-8 md:py-12 text-white opacity-80">
+        <div class="ornament mb-6"></div>
+        <p class="text-base md:text-lg luxury-font">© 2025 Leo tv. جميع الحقوق محفوظة -  </p>
+    </footer>
+    
+    <script>
+        feather.replace();
+        
+        // Copy code functionality
+        function copyCode(codeElement) {
+            const code = codeElement.getAttribute('data-code');
+            const tempInput = document.createElement('input');
+            tempInput.value = code;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            
+            // Show notification
+            const notification = document.getElementById('copyNotification');
+            notification.classList.add('show');
+            
+            // Change code display style temporarily
+            codeElement.classList.add('copied');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                codeElement.classList.remove('copied');
+            }, 2000);
+        }
+        
+        // Add click event to all code displays
+        document.querySelectorAll('.code-display').forEach(codeDisplay => {
+            codeDisplay.addEventListener('click', () => {
+                copyCode(codeDisplay);
+            });
+        });
+        
+        // FAQ functionality
+        document.querySelectorAll('.faq-item').forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Advanced animations and effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create floating particles
+            const particlesContainer = document.querySelector('.particles');
+            for (let i = 0; i < 80; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: absolute;
+                    width: ${Math.random() * 5 + 1}px;
+                    height: ${Math.random() * 5 + 1}px;
+                    background: rgba(212, 175, 55, ${Math.random() * 0.5});
+                    border-radius: 50%;
+                    top: ${Math.random() * 100}%;
+                    left: ${Math.random() * 100}%;
+                    animation: floatParticle ${Math.random() * 25 + 15}s infinite ease-in-out;
+                    opacity: ${Math.random() * 0.6 + 0.2};
+                `;
+                particlesContainer.appendChild(particle);
+            }
+
+            // Add CSS for particle animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes floatParticle {
+                    0%, 100% { 
+                        transform: translate(0, 0) rotate(0deg);
+                        opacity: 0.2;
+                    }
+                    25% { 
+                        transform: translate(${Math.random() * 150 - 75}px, ${Math.random() * 150 - 75}px) rotate(90deg);
+                        opacity: 0.8;
+                    }
+                    50% { 
+                        transform: translate(${Math.random() * 150 - 75}px, ${Math.random() * 150 - 75}px) rotate(180deg);
+                        opacity: 0.4;
+                    }
+                    75% { 
+                        transform: translate(${Math.random() * 150 - 75}px, ${Math.random() * 150 - 75}px) rotate(270deg);
+                        opacity: 0.6;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Add scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all luxury cards
+            document.querySelectorAll('.luxury-card, .feature-block').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.8s cubic-bezier(0.23, 1, 0.320, 1)';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
